@@ -16,7 +16,7 @@ func RunContainerInitProcess() error  {
 	if cmdArray == nil || len(cmdArray)==0{
 		return fmt.Errorf("Run container get user command error,cmdArray is nil")
 	}
-	//setUpMount()
+	setUpMount()
 	defaultMountFlags := syscall.MS_NOEXEC | syscall.MS_NOSUID | syscall.MS_NODEV
 	syscall.Mount("proc","/proc","proc",uintptr(defaultMountFlags),"")
 	path,err := exec.LookPath(cmdArray[0])
