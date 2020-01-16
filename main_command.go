@@ -1,11 +1,11 @@
 package main
 
 import (
-	"./container"
-	"./cgroups/subsystems"
+	"docker/container"
+	"docker/cgroups/subsystems"
 	"fmt"
-	log "github.com/Sirupsen/logrus"
-	"github.com/urfave/cli"
+	log "github.com/sirupsen/logrus"
+	"github.com/urfave/cli/v2"
 )
 
 var runCommand = &cli.Command{

@@ -1,11 +1,10 @@
 package main
 
-import(
-	log "github.com/Sirupsen/logrus"
+import (
+	"docker/cgroups/subsystems"
+	"docker/container"
+	log "github.com/sirupsen/logrus"
 	"os"
-	"./container"
-	"./cgroups"
-	"./cgroups/subsystems"
 	"strings"
 )
 
@@ -20,13 +19,17 @@ func Run(tty bool,comArray []string,res *subsystems.ResourceConfig){
 		log.Error(err)
 	}
 
-	cgroupmanager := cgroups.NewCgroupManager("Docker-cgroup")
-	defer cgroupmanager.Destroy()
-	cgroupmanager.Set(res)
-	cgroupmanager.Apply(parent.Process.Pid)
+	//cgroupmanager := cgroups.NewCgroupManager("Docker-cgroup")
+	//defer cgroupmanager.Destroy()
+	//cgroupmanager.Set(res)
+	//cgroupmanager.Apply(parent.Process.Pid)
 
 	sendInitCommand(comArray,writePipe)
 	parent.Wait()
+	mntURL := "../workspace/root/mnt/"
+	rootURL := "../workspace/root/"
+	container.DeleteWorkSpace(rootURL,mntURL)
+	os.Exit(0)
 }
 
 func sendInitCommand(comArray []string, writePipe *os.File) {

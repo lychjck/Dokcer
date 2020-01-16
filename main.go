@@ -1,8 +1,8 @@
 package main
 
 import(
-	log "github.com/Sirupsen/logrus"
-	"github.com/urfave/cli"
+	log "github.com/sirupsen/logrus"
+	"github.com/urfave/cli/v2"
 	"os"
 )
 
